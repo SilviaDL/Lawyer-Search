@@ -21,10 +21,10 @@ Avviare Elasticseach (dalla sua directory):
 	- ./bin/elasticsearch
 
 Scaricare la repository da GitHub:
-	- git clone --------
+	- git clone https://github.com/SilviaDL/Lawyer-Search.git
 
 Istallare le dipendenze:
-	- cd -----------
+	- cd Lawyer-Search
 	- npm install
 
 Eseguire il comando:
