@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html lang="it" >
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Search</title>
+  <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+    <div class="search2">
+        <i> </i>
+        <div class="s-bar">
+            <form action="resultList" method="get">
+                <input type="text" name="query" placeholder="{{inputString}}"  >
+                <input type="hidden" name="page" value="1">
+                <input type="submit" value="Search"/>
+            </form>
+        </div>
+    </div>
+    <div class="clear"></div>
+
+    <div class="clear"></div>
+    <div class="wrap">
+        <div class="vdo-log">
+            <div class="heading">
+                <div>
+                
+                </div>
+                <h2>
+                    {{trovati}} {{pages.length}} risultati per: 
+                    '{{inputString}}' {{nonTrovato}} 
+                </h2>
+                
+                
+            </div>
+
+        <script language="javascript" type="text/javascript">
+            <!--
+            var title = new Array();
+            var url = new Array();
+            var desc = new Array();
+            {{#pages}}
+                title.push("{{_source.title}}")
+                url.push("{{_source.url}}")
+                desc.push("{{_source.description}}")
+            {{/pages}}
+
+            var page = {{numberPage}};
+            var max = 10;
+            var from = 0; 
+            var to = 0;
+            var l = title.length
+            if ((l - ((page -1) * max)) < max) { 
+                from = (page -1) * max;
+                to = l - 1 ; }
+            else {
+                from = (page -1) * max;
+                to = from + (max - 1);
+            }
+
+            for (var i=from; i<= to; i++) {
+              document.write('<div class="vdo-list" > <div class="vdo-info"> <div class="vdo-title" id="titolo"> <a id="link" href="'+url[i]+'" b><h3> '+title[i]+'</h3></a></div><div class="vdo-detail"><p id="url"><a id="link" href="'+url[i]+'"target="_blank">'+url[i]+'</a></p></div><br><div class="vdo-desc" id="testo">'+desc[i]+'</div></div><div class="clear"></div></div>');
+            }
+
+            //-->
+        </script>
+
+            <div class="heading">
+                <br>
+                <h3> {{cercavi}} </h3>
+                <h3> {{noSuggerimento}} </h3>
+                
+                <div class= "vdo-title">        
+                <br>
+                <p> {{#similar}} <a href="http://localhost:3000/resultList?query={{text}}&page=1" > {{text}} </a> 
+                    <br> {{/similar}}  </p>
+            
+                </div>
+            </div>
+
+            <div class="clear"></div>
+
+            <div class="page-nav"> 
+                <ul>
+                    <li><a id="prev" >&laquo; Prev</a></li>
+                    <li><span class="current">{{numberPage}}</span></li>
+                    <li><a id="next">Next &raquo;</a></li>
+                </ul>
+              <h2 id="mostrati" >  </h2>  
+            </div>
+
+
+            <script language="javascript" type="text/javascript">
+                var l = {{pages.length}}
+                var page = {{numberPage}}
+                var max = 10;
+                if((l > (page * max))){
+                    newPage = page + 1
+                    document.getElementById("next").href = "http://localhost:3000/resultList?query={{inputString}}&page=" + newPage
+                }
+                if(page - 1 > 0){
+                    newPage = page - 1
+                    document.getElementById("prev").href = "http://localhost:3000/resultList?query={{inputString}}&page=" + newPage
+                }
+
+                if ((l - ((page -1) * max)) < max) { 
+                    var from = (page -1) * max;
+                    var to = l - 1 ; }
+                else {
+                    var from = (page -1) * max;
+                    var to = from + (max - 1);
+                }
+                document.getElementById("mostrati").innerHTML = "Mostrati i risultati "+ (from+1) +"-"+ (to+1);
+                document.getElementById("mostrati").style.fontSize = "18px";
+                document.getElementById("mostrati").style.color = "#6b5f5a";
+            </script>
+
+
+        </div>
+    </div>
+    <div class="clear"></div>
+    </div>
+
+</body>
+</html>
+
+
